@@ -18,34 +18,26 @@ namespace WindowsSleep
         public MainForm()
         {
             InitializeComponent();
-            InitializeUI();
+            InitializeComponents();
+        }
+
+        private void InitializeComponents()
+        {
+            _timerEvent = new Timer();
+            _timerEvent.Interval = 1000;
+            _timerEvent.Tick += TimerEvent_Tick;
+
+            foreach (WindowsEventType type in (WindowsEventType[])Enum.GetValues(typeof(WindowsEventType))) cmbEventType.Items.Add(type);
+            foreach (TimeType type in (TimeType[])Enum.GetValues(typeof(TimeType))) cmbTimeType.Items.Add(type);
+            cmbEventType.SelectedIndex = 0;
+            cmbTimeType.SelectedIndex = 0;
 
             // keyboard messages are received by the form before they reach any controls on the form
             this.KeyPreview = true;
             this.KeyPress += MainForm_KeyPress;
-        }
 
-        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter && _timerEvent.Enabled == false) btnStart_Click(null, null);
-            if (e.KeyChar == (char)Keys.Escape && _timerEvent.Enabled == true) btnCancel_Click(null, null);
-        }
+            txtEventTime.KeyPress += TxtEventTime_KeyPress;
 
-        private void InitializeUI()
-        {
-            if (_timerEvent == null)
-            {
-                _timerEvent = new Timer();
-                _timerEvent.Interval = 1000;
-                _timerEvent.Tick += _timerEvent_Tick;
-
-                foreach (WindowsEventType type in (WindowsEventType[])Enum.GetValues(typeof(WindowsEventType))) cmbEventType.Items.Add(type);
-                foreach (TimeType type in (TimeType[])Enum.GetValues(typeof(TimeType))) cmbTimeType.Items.Add(type);
-                cmbEventType.SelectedIndex = 0;
-                cmbTimeType.SelectedIndex = 0;
-            }
-            
-            lblTimeRemaining.Text = Constants.Ready;
             btnCancel.Enabled = false;
         }
 
@@ -69,11 +61,22 @@ namespace WindowsSleep
                 btnStart.Enabled = true;
                 btnCancel.Enabled = false;
 
-                InitializeUI();
+                lblTimeRemaining.Text = Constants.Ready;
             }
         }
 
-        private void _timerEvent_Tick(object sender, EventArgs e)
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && _timerEvent.Enabled == false) btnStart_Click(null, null);
+            if (e.KeyChar == (char)Keys.Escape && _timerEvent.Enabled == true) btnCancel_Click(null, null);
+        }
+
+        private void TxtEventTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void TimerEvent_Tick(object sender, EventArgs e)
         {
             if (_remainingTime.Ticks > 0)
             {
@@ -123,6 +126,13 @@ namespace WindowsSleep
             this.Focus();
 
             RefreshUI();
+        }
+
+        private bool ValidateInput(string input)
+        {
+            int result;
+
+            return int.TryParse(input, out result);
         }
     }
 }

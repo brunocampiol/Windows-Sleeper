@@ -15,11 +15,6 @@ namespace WindowsSleep
         private Timer _timerEvent;
         private TimeSpan _remainingTime;
 
-        //private DateTime _startedDate;
-        //private DateTime _remainingDate;
-
-        private static TimeSpan _secondInterval = new TimeSpan(0, 0, 1);
-
         public MainForm()
         {
             InitializeComponent();
@@ -50,6 +45,7 @@ namespace WindowsSleep
             {
                 lblTimeRemaining.Text = _remainingTime.TotalSeconds.ToString() + Constants.SecondsRemaining;
 
+                txtEventTime.Enabled = false;
                 cmbEventType.Enabled = false;
                 cmbTimeType.Enabled = false;
                 btnStart.Enabled = false;
@@ -57,6 +53,7 @@ namespace WindowsSleep
             }
             else
             {
+                txtEventTime.Enabled = true;
                 cmbEventType.Enabled = true;
                 cmbTimeType.Enabled = true;
                 btnStart.Enabled = true;
@@ -70,7 +67,7 @@ namespace WindowsSleep
         {
             if (_remainingTime.Ticks > 0)
             {
-                _remainingTime = _remainingTime.Subtract(_secondInterval);
+                _remainingTime = _remainingTime.Subtract(Constants.ONE_SECOND);
             }
             else
             {
@@ -92,6 +89,7 @@ namespace WindowsSleep
             
             _timerEvent.Start();
 
+            txtEventTime.Enabled = false;
             cmbEventType.Enabled = false;
             cmbTimeType.Enabled = false;
             btnStart.Enabled = false;
@@ -104,6 +102,7 @@ namespace WindowsSleep
         {
             _timerEvent.Stop();
 
+            txtEventTime.Enabled = true;
             cmbEventType.Enabled = true;
             cmbTimeType.Enabled = true;
             btnStart.Enabled = true;

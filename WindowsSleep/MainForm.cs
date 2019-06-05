@@ -94,6 +94,12 @@ namespace WindowsSleep
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if (!IsValidInput(txtEventTime.Text))
+            {
+                lblTimeRemaining.Text = "'" + txtEventTime.Text + "'" + Constants.InvalidInput;
+                return;
+            }
+
             // TODO validate input
             var inputTime = txtEventTime.Text;
             TimeType timeType = (TimeType)cmbTimeType.SelectedItem;
@@ -113,6 +119,8 @@ namespace WindowsSleep
             RefreshUI();
         }
 
+
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             _timerEvent.Stop();
@@ -128,7 +136,7 @@ namespace WindowsSleep
             RefreshUI();
         }
 
-        private bool ValidateInput(string input)
+        private bool IsValidInput(string input)
         {
             int result;
 

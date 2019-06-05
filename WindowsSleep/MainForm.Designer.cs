@@ -45,7 +45,7 @@
             this.lblEventType.Location = new System.Drawing.Point(12, 9);
             this.lblEventType.Name = "lblEventType";
             this.lblEventType.Size = new System.Drawing.Size(62, 13);
-            this.lblEventType.TabIndex = 0;
+            this.lblEventType.TabIndex = 999;
             this.lblEventType.Text = "Event Type";
             // 
             // cmbEventType
@@ -55,7 +55,7 @@
             this.cmbEventType.Location = new System.Drawing.Point(80, 6);
             this.cmbEventType.Name = "cmbEventType";
             this.cmbEventType.Size = new System.Drawing.Size(121, 21);
-            this.cmbEventType.TabIndex = 1;
+            this.cmbEventType.TabIndex = 998;
             // 
             // lblEventTime
             // 
@@ -63,7 +63,7 @@
             this.lblEventTime.Location = new System.Drawing.Point(12, 46);
             this.lblEventTime.Name = "lblEventTime";
             this.lblEventTime.Size = new System.Drawing.Size(61, 13);
-            this.lblEventTime.TabIndex = 2;
+            this.lblEventTime.TabIndex = 997;
             this.lblEventTime.Text = "Countdown";
             // 
             // txtEventTime
@@ -71,7 +71,7 @@
             this.txtEventTime.Location = new System.Drawing.Point(79, 43);
             this.txtEventTime.Name = "txtEventTime";
             this.txtEventTime.Size = new System.Drawing.Size(100, 20);
-            this.txtEventTime.TabIndex = 3;
+            this.txtEventTime.TabIndex = 2;
             // 
             // cmbTimeType
             // 
@@ -80,14 +80,14 @@
             this.cmbTimeType.Location = new System.Drawing.Point(185, 43);
             this.cmbTimeType.Name = "cmbTimeType";
             this.cmbTimeType.Size = new System.Drawing.Size(121, 21);
-            this.cmbTimeType.TabIndex = 4;
+            this.cmbTimeType.TabIndex = 3;
             // 
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(12, 82);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 5;
+            this.btnStart.TabIndex = 4;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -97,7 +97,7 @@
             this.btnCancel.Location = new System.Drawing.Point(104, 82);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -108,7 +108,7 @@
             this.lblTimeRemaining.Location = new System.Drawing.Point(12, 122);
             this.lblTimeRemaining.Name = "lblTimeRemaining";
             this.lblTimeRemaining.Size = new System.Drawing.Size(38, 13);
-            this.lblTimeRemaining.TabIndex = 7;
+            this.lblTimeRemaining.TabIndex = 996;
             this.lblTimeRemaining.Text = "Ready";
             // 
             // MainForm

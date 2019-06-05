@@ -19,6 +19,16 @@ namespace WindowsSleep
         {
             InitializeComponent();
             InitializeUI();
+
+            // keyboard messages are received by the form before they reach any controls on the form
+            this.KeyPreview = true;
+            this.KeyPress += MainForm_KeyPress;
+        }
+
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter && _timerEvent.Enabled == false) btnStart_Click(null, null);
+            if (e.KeyChar == (char)Keys.Escape && _timerEvent.Enabled == true) btnCancel_Click(null, null);
         }
 
         private void InitializeUI()
@@ -95,6 +105,8 @@ namespace WindowsSleep
             btnStart.Enabled = false;
             btnCancel.Enabled = true;
 
+            this.Focus();
+
             RefreshUI();
         }
 
@@ -107,6 +119,8 @@ namespace WindowsSleep
             cmbTimeType.Enabled = true;
             btnStart.Enabled = true;
             btnCancel.Enabled = false;
+
+            this.Focus();
 
             RefreshUI();
         }

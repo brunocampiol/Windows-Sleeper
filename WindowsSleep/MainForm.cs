@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using WindowsSleep.Models;
 using WindowsSleep.Static;
@@ -68,7 +63,8 @@ namespace WindowsSleep
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter && _timerEvent.Enabled == false) btnStart_Click(null, null);
-            if (e.KeyChar == (char)Keys.Escape && _timerEvent.Enabled == true) btnCancel_Click(null, null);
+            else if (e.KeyChar == (char)Keys.Enter && _timerEvent.Enabled == true) btnCancel_Click(null, null);
+            else if (e.KeyChar == (char)Keys.Escape && _timerEvent.Enabled == true) btnCancel_Click(null, null);
         }
 
         private void TxtEventTime_KeyPress(object sender, KeyPressEventArgs e)
@@ -103,9 +99,9 @@ namespace WindowsSleep
             // TODO validate input
             var inputTime = txtEventTime.Text;
             TimeType timeType = (TimeType)cmbTimeType.SelectedItem;
-            
+
             _remainingTime = TimeTypeHelper.GetTimeSpan(inputTime, timeType);
-            
+
             _timerEvent.Start();
 
             txtEventTime.Enabled = false;
@@ -114,12 +110,10 @@ namespace WindowsSleep
             btnStart.Enabled = false;
             btnCancel.Enabled = true;
 
-            this.Focus();
+            this.btnCancel.Focus();
 
             RefreshUI();
         }
-
-
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -131,7 +125,7 @@ namespace WindowsSleep
             btnStart.Enabled = true;
             btnCancel.Enabled = false;
 
-            this.Focus();
+            this.btnStart.Focus();
 
             RefreshUI();
         }

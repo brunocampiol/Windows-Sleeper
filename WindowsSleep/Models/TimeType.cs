@@ -2,9 +2,9 @@
 {
     public enum TimeType
     {
-        Seconds,
-        Minutes,
+        Days,
         Hours,
-        Days
+        Minutes,
+        Seconds
     }
 }

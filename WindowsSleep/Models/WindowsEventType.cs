@@ -2,8 +2,8 @@
 {
     public enum WindowsEventType
     {
-        Reboot,
+        Sleep,
         Shutdown,
-        Sleep
+        Reboot
     }
 }
